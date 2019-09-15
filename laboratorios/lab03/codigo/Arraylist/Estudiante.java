@@ -108,14 +108,14 @@ public class Estudiante {
     }
 
     /**
-   * @return Nota obtenida 
+   * @return nota obtenida 
    */
     public String getNota() {
         return nota;
     }
 
     /**
-   * @return Nota final de la materia
+   * @return nota final de la materia
    */
     public String getNotadef() {
         return notadef;
