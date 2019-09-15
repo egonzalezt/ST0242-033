@@ -1,5 +1,11 @@
 package com.company;
 
+/**
+ * Clase estudiantes, encargada de ejecutar el registro de estudiantes y realizar las diversas operaciones con estos.
+ * @author Esteban Gonzalez Tamayo
+ * @author David Felipe Garcia
+ */
+
 public class Lista {
     private Nodo cabeza;
     private int size;
