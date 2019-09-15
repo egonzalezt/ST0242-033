@@ -1,7 +1,16 @@
 package com.company;
 
+/**
+ * Clase Main
+ * @author Esteban Gonzalez Tamayo
+ * @author David Felipe Garcia
+ */
+
 public class Main {
 
+    /**
+    * Clase main, encargada de crear una lista e invocar los diversos metodos las demas clases
+    */
     public static void main(String[] args) {
         try
         {
@@ -13,7 +22,7 @@ public class Main {
 
         }catch (Exception e)
         {
-
+            System.out.println(e);
         }
 
     }
