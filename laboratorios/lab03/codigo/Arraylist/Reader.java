@@ -4,20 +4,33 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Clase Reader encargada de leer un archivo csv
+ * @author Esteban Gonzalez Tamayo
+ * @author David Felipe Garcia
+ */
+
 public class Reader {
 
     ArrayList<Estudiante> registro;
 
+    /**
+    * Metodo encargado de leer el archivo csv y registrar un nuevo estudiante 
+    * @throws FileNotFoundException
+    */
     public ArrayList<Estudiante> Lector()throws FileNotFoundException
     {
         //lectura del archivo
         registro = new ArrayList<Estudiante>();
-        //condicion para registrar mas archivos
-        boolean condicion = true;
+        
         try {
             //creacion del scanner para leer el archivo
             Scanner input = new Scanner(new File("E:\\Desktop\\LAB3\\src\\com\\company\\Libro3.csv"));
-            //Guarda la primera linea del archivo
+            /**
+            *Guarda la primera linea del archivo que contiene:
+            * nombre, código, Cod. Materia, Semestre, Grupo, Descripcion Evaluacion, Porcentaje, Descripcion, Nom. Materia,
+            * Nota, Nota Definitiva
+            */
             String Nombre = input.nextLine();
             //Separa el contenido del String en un arreglo
             String[] tamorigi = Nombre.split(",");
