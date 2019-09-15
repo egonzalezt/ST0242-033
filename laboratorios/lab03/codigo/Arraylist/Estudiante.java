@@ -1,8 +1,11 @@
 package com.company;
 
-    /*
-    *Clase estudiante, encargada de almacenar todos los atributos de estudiante
-    */
+/**
+ * Clase estudiante, encargada de almacenar todos los atributos de estudiante
+ * @author Esteban Gonzalez Tamayo
+ * @author David Felipe Garcia
+ */
+
 public class Estudiante {
     private String nombre;
     private String codigo;
