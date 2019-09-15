@@ -3,10 +3,20 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Clase estudiantes, encargada de ejecutar el registro de estudiantes y realizar las diversas operaciones con estos.
+ * @author Esteban Gonzalez Tamayo
+ * @author David Felipe Garcia
+ */
+
 public class Estudiantes {
 
+    //Atributo privado de la clase estudiante
     private ArrayList<Estudiante> estudiantes;
-
+    /**
+    * Metodo constructor sin parametros
+    * Encargado de llamar al metodo registro.
+    */
     public Estudiantes()
     {
         try {
@@ -14,10 +24,15 @@ public class Estudiantes {
         }catch(Exception e){}
     }
 
+    /**
+    *@throws @FileNotFoundException encargado de lanzar excepción si hay un error al leer el csv.
+    *metodo encargado de llamar a la clase Reader para leer los datos del archivo csv y registrarlos en un ArrayList
+    */
     public void registro() throws FileNotFoundException
     {
         try
         {
+            //invocacion del la clase Reader y su metodo read para la lectura del csv
             Reader read = new Reader();
             estudiantes = read.Lector();
             this.estudiantes = estudiantes;
@@ -27,8 +42,16 @@ public class Estudiantes {
         }
     }
 
+    /**
+    *   Metodo encargado de mostrar todos los estudiantes registrados en un curso especifico y semestre solicitado.
+    *   @param materia Materia que se desea filtrar
+    *   @param semestre Semestre que se desea filtrar
+    */
     public void Consultacurso(String materia, String semestre)
     {
+        /**
+        * ciclo encargado de buscar y comparar cada semestre y materia de un estudiante y mostrar la obtenida
+        */
         for(Estudiante estudiante : estudiantes)
         {
             if(estudiante.getMateria().equalsIgnoreCase(materia)&&estudiante.getSemestre().equalsIgnoreCase(semestre))
@@ -37,120 +60,21 @@ public class Estudiantes {
             }
         }
     }
-
+    
+    /**
+    *   Metodo encargado de mostrar todas las materias registradas por un estudiante en un semetre en especifico
+    *   @param nombre Nombre del estudiante 
+    *   @param semestre Semestre que se desea filtrar
+    */
     public void Consultaestudiante(String nombre, String semestre)
     {
+        /**
+        * ciclo encargado de buscar y comparar cada estudiante y imprimir el deseado
+        */
         for (Estudiante estudiante : estudiantes) {
             if (estudiante.getNombre().equalsIgnoreCase(nombre) && estudiante.getSemestre().equalsIgnoreCase(semestre)) {
                 System.out.println(estudiante.toString());
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    private ArrayList<Estudiante> estudiante = new ArrayList<Estudiante>();
-    private ArrayList<Materia> mat = new ArrayList<Materia>();
-
-    public void createList()
-    {
-
-        Scanner reader = new Scanner(System.in);
-        //int i=0;
-        //while(i<=2)
-        //{
-            System.out.println("Ingrese el nombre \n");
-            String nombre = reader.next();
-            System.out.println("Ingrese el semestre \n");
-            String semestre = reader.next();
-            System.out.println("cuantas Materias desea ingresar \n");
-            int materias= reader.nextInt();
-
-            for(int j=0;j<materias;j++)
-            {
-                System.out.println("Ingrese el materia \n");
-                String Materia = reader.next();
-                System.out.println("Nota \n");
-                double nota = reader.nextInt();
-                Materia d1 = new Materia(Materia,nota);
-                mat.add(d1);
-            }
-            addStudent(nombre,semestre,mat);
-           // i++;
-        //}
-
-    }
-
-    private void addStudent(String nombre, String semestre, ArrayList<Materia> materia)
-    {
-        Estudiante d1 = new Estudiante(nombre,semestre,materia);
-        estudiante.add(d1);
-    }
-
-    public void Materia(String semetre,String materia)
-    {
-        for(int i=0;i<estudiante.size();i++)
-        {
-            if(estudiante.get(i).getMaterias().get(i).getMateria().equalsIgnoreCase(materia)&&estudiante.get(i).getSemestre().equalsIgnoreCase(semetre))
-            {
-                System.out.println("Nombre: "+estudiante.get(i).getNombre()+" \t");
-                System.out.print("Materia: "+estudiante.get(i).getMaterias().get(i).getMateria()+" \t");
-                System.out.print("Nota: "+estudiante.get(i).getMaterias().get(i).getNota()+" \n");
-            }
-        }
-    }
-
-    public void Semestre(String semetre,String nombre)
-    {
-        int pos=0;
-        for(int i=0;i<estudiante.size();i++)
-        {
-            if(estudiante.get(i).getSemestre().equalsIgnoreCase(semetre)&&estudiante.get(i).getNombre().equalsIgnoreCase(nombre))
-            {
-                pos=i;
-            }
-        }
-
-        int Materiastam = estudiante.get(pos).getMaterias().size();
-
-        System.out.println("a"+Materiastam);
-        System.out.println("Nombre: "+estudiante.get(pos).getNombre()+" \t");
-        System.out.print("Semestre: "+estudiante.get(pos).getSemestre()+" \n");
-
-        for(int j=0; j<Materiastam;j++)
-        {
-            System.out.print("Materia: "+estudiante.get(pos).getMaterias().get(j).getMateria()+" \t");
-            System.out.print("Nota: "+estudiante.get(pos).getMaterias().get(j).getNota()+" \t");
-            System.out.println();
-        }
-
-    }*/
 }
