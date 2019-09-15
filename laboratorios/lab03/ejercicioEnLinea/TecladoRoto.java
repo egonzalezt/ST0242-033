@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 
-    class Mains {
+class Mains {
 
     public static void main (String [] abc) throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
@@ -25,6 +25,8 @@ import java.util.LinkedList;
         }
     }
 }
-//Referencia
-kingkingyyk(2017)11988 Broken Keyboard (a.k.a. Beiju Text).java [Source code]. 
-https://github.com/PuzzlesLab/UVA/blob/master/King/11988%20Broken%20Keyboard%20(a.k.a.%20Beiju%20Text).java
+/**
+*Referencia
+*kingkingyyk(2017)11988 Broken Keyboard (a.k.a. Beiju Text).java [Source code]. 
+*https://github.com/PuzzlesLab/UVA/blob/master/King/11988%20Broken%20Keyboard%20(a.k.a.%20Beiju%20Text).java
+*/
