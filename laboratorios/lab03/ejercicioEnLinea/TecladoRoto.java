@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 
-class Mains {
+public class TecladoRoto {
 
     public static void main (String [] abc) throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
