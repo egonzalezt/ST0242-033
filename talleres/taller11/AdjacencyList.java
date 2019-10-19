@@ -3,20 +3,24 @@ import java.util.LinkedList;
 
 public class AdjacencyList {
 
-    LinkedList<Integer> Adjlist[];
+    LinkedList<Nodo> Adjlist[];
     int size;
 
     public AdjacencyList(int size)
     {
         Graph g1 = new Graph(size);
-        Adjlist = g1.getlist();
+        Adjlist = new LinkedList[size];
+        for (int i = 0; i <size ; i++)
+        {
+            Adjlist[i] = new LinkedList<>();
+        }
         this.size = size;
     }
 
-    public void addEdge(int origen, int destino)
+    public void addEdge(int origen, int destino, int costo)
     {
-        Adjlist[origen].addFirst(destino);
-        Adjlist[destino].addFirst(origen);
+        Nodo nodo = new Nodo(origen,destino,costo);
+        Adjlist[origen].addFirst(nodo);
     }
 
     public void imprimir()
@@ -26,14 +30,15 @@ public class AdjacencyList {
         {
             if(Adjlist[i].size()>0)
             {
+                System.out.print("Costo: "+Adjlist[i].get(0).getPeso()+"  Conexiones:  ");
                 System.out.print(i+ " -> ");
                 for (int j = 0; j < Adjlist[i].size(); j++)
                 {
                     if(j<size-3)
                     {
-                        System.out.print(Adjlist[i].get(j));
+                        System.out.print(Adjlist[i].get(j).getDestino());
                         System.out.print(" -> ");
-                    }else System.out.print(Adjlist[i].get(j));
+                    }else System.out.print(Adjlist[i].get(j).getDestino());
                 }
                 System.out.println();
             }

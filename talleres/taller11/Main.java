@@ -6,14 +6,14 @@ public class Main {
         AdjacencyList graph = new AdjacencyList(6);
         Graph p1 = new Graph(5);
 
-        graph.addEdge(0,1);
-        graph.addEdge(0, 4);
-        graph.addEdge(1, 2);
-        graph.addEdge(1, 3);
-        graph.addEdge(1, 4);
-        graph.addEdge(2, 3);
-        graph.addEdge(3, 4);
-        graph.addEdge(4, 5);
+        graph.addEdge(0,1,4);
+        graph.addEdge(0, 4,0);
+        graph.addEdge(1, 2,1);
+        graph.addEdge(1, 3,2);
+        graph.addEdge(1, 4,3);
+        graph.addEdge(2, 3,4);
+        graph.addEdge(3, 4,2);
+        graph.addEdge(4, 5,2);
         graph.imprimir();
 
         AdjacencyMatrix graph1 = new AdjacencyMatrix(5);
