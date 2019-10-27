@@ -34,5 +34,3 @@ print("Generando imagen del arbol")
 
 dot_data = export_graphviz( Arbol,filled=True, rounded=True,class_names=['yes', 'no'],feature_names=variables)
 
-graph = graph_from_dot_data(dot_data)                 
-graph.write_png('tree.png')   
