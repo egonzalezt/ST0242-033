@@ -36,12 +36,3 @@ dot_data = export_graphviz( Arbol,filled=True, rounded=True,class_names=['yes', 
 
 graph = graph_from_dot_data(dot_data)                 
 graph.write_png('tree.png')   
-
-Prediction = Arbol.predict([[6.52,20,35.51,3289,29,98]])
-
-print("Prediccion con: 6.52,20,35.51,3289,29,98")
-
-if Prediction == 'yes':
-    print("El valor ingresado posee roya")
-else: print("El valor ingresado no posee roya")
-
