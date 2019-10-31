@@ -24,7 +24,7 @@ Clase Decisiontree
 
     Implementacion del arbol de decision 'CART' implementando el indice de gini, para ejecutar el codigo se necesita las librerias mencionadas anteriormente,
     adicionalmente se debe poner en la carpeta donde se encuentra el codigo el archivo csv que posteriormente se mencionara donde se seleccionara el nombre del csv,
-    finalmente durante la ejecucion del codigo se creara un archivo con extencion '.png' que sera el arbol generado con los datos contenidos en el csv.
+    finalmente durante la ejecucion del codigo se creara un archivo con extension '.png' que sera el arbol generado con los datos contenidos en el csv.
 '''
 
 def Decisiontree():
@@ -43,11 +43,11 @@ def Decisiontree():
 
     Dep = data['label'].values
 
-    # Implementacion del arbol de decision con el criterio de 'GINI', con una profundidad maxia de 4 nodos y finalmente un minimo de 5 hojas en el arbol
+    # Implementacion del arbol de decision con el criterio de 'GINI', con una profundidad maxima de 4 nodos y finalmente un minimo de 5 hojas en el arbol
 
     Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=4, min_samples_leaf=5)
 
-    # Entrenamento del arbol de decision para poder detectar cual sera la variable que mas parte el arbol y genera el indice de gini mas bajom 
+    # Entrenamiento del arbol de decision para poder detectar cual sera la variable que mas parte el arbol y genera el indice de gini mas bajo.
     # este requiere los valores independientes y dependientes para ser analizado.
 
     Arbol.fit(Indep, Dep) 
@@ -73,7 +73,7 @@ def Decisiontree():
         print("ph  soil_temperature  soil_moisture  illuminance  env_temperature  env_humidity")
 
         # Lectura de los valores digitados en la consola, estos seran procesados para luego ser evaluados.
-        # Esta parte del codigo leera los valores digitados para despues almancenarlos en un arreglo que sera implementado futuramente.
+        # Esta parte del codigo leera los valores digitados para despues almacenarlos en un arreglo que sera implementado futuramente.
 
         str = input("-> ")
         list = str.split (",")
@@ -147,7 +147,7 @@ def Exetime():
         print("ph  soil_temperature  soil_moisture  illuminance  env_temperature  env_humidity")
 
         # Lectura de los valores digitados en la consola, estos seran procesados para luego ser evaluados.
-        # Esta parte del codigo leera los valores digitados para despues almancenarlos en un arreglo que sera implementado futuramente.
+        # Esta parte del codigo leera los valores digitados para despues almacenarlos en un arreglo que sera implementado futuramente.
 
         str = input("-> ")
         list = str.split (",")
