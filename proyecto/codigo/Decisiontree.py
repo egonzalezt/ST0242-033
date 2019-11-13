@@ -6,14 +6,10 @@ import time
 
 '''
 Para la correcta ejecucion del codigo se necesitaran las siguientes librerias:
-
 (librerias base)
-
 - https://www.anaconda.com/distribution/
 - https://pypi.org/project/pip/
-
 (librerias del codigo)
-
 - https://pandas.pydata.org/pandas-docs/stable/install.html
 - https://scikit-learn.org/stable/install.html
 - https://anaconda.org/conda-forge/pydotplus
@@ -21,7 +17,6 @@ Para la correcta ejecucion del codigo se necesitaran las siguientes librerias:
 
 '''
 Clase Decisiontree
-
     Implementacion del arbol de decision 'CART' implementando el indice de gini, para ejecutar el codigo se necesita las librerias mencionadas anteriormente,
     adicionalmente se debe poner en la carpeta donde se encuentra el codigo el archivo csv que posteriormente se mencionara donde se seleccionara el nombre del csv,
     finalmente durante la ejecucion del codigo se creara un archivo con extension '.png' que sera el arbol generado con los datos contenidos en el csv.
@@ -42,6 +37,32 @@ def Decisiontree():
     Indep = data[variables].values 
 
     Dep = data['label'].values
+
+    # Implementacion del arbol de decision con el criterio de 'GINI', con una profundidad maxima de 4 nodos y finalmente un minimo de 5 hojas en el arbol
+
+    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=22, min_samples_leaf=5)
+
+    # Entrenamiento del arbol de decision para poder detectar cual sera la variable que mas parte el arbol y genera el indice de gini mas bajo.
+    # este requiere los valores independientes y dependientes para ser analizado.
+
+    Arbol.fit(Indep, Dep) 
+
+    print("Generando imagen del arbol \n")
+
+    # Implementacion de Grapviz para la graficacion del arbol.
+    # filled y rounded se implementan para que el arbol tenga un color y detalle para diferenciar cuando hay o no hay roya, adicionalmente    'class_names' contiene los
+    # valores que digitaran si hay o no hay roya.
+
+    dot_data = export_graphviz( Arbol,filled=True, rounded=True,class_names=['yes', 'no'],feature_names=variables)
+
+    # Importacion del arbol generado en graphviz por medio de un archivo de tipo '.png' el cual contendra el arbol generado.
+    
+    graph = graph_from_dot_data(dot_data)                 
+    graph.write_png('tree.png')   
+    print("Imagen generada\n")
+
+    # Implementacion de try para evitar errores que pueden ser ocasionados al digitar valores erroneos como tipo string 
+
     try:
         print(" Digite los valores separados por comas a evaluar: \n")
         print("ph  soil_temperature  soil_moisture  illuminance  env_temperature  env_humidity")
@@ -58,17 +79,21 @@ def Decisiontree():
         # Esta parte del codigo se implementara para predecir el valor previamente digitado y almacenado en un arreglo para detectar 
         # si el valor digitado tiene o no roya por lo cual para realizar este paso es necesario primero entrenar al arbol para que pueda detectar el patron.
 
+        Prediction = Arbol.predict([PredicVals])
+
+        print("\n Prediccion con: \n\n", PredicVals,end=" -> ")
+
+        if Prediction == 'yes':
+            print("El valor ingresado posee roya")
+        else: print("El valor ingresado no posee roya")
     except ValueError:
         print ("Error! Valor no valido. Intentelo otra vez...")
 
 '''
 Metodo Exetime
-
     Este metodo sera implementado para la toma de tiempos de las diferentes funciones implementadas en el metodo Decisiontree,
     su objetivo es tomar los tiempos y luego registrarlos en el informe.
-
     adicionalmente para la toma de tiempos se implemento la libreria time para obtener los resultados de los tiempos que seran en segundos (s)
-
 '''
 
 def Exetime():
@@ -87,7 +112,11 @@ def Exetime():
 
     # Toma de tiempos para la creacion del arbol
     time3 = time.time()
-
+    variables = ['ph', 'soil_temperature', 'soil_moisture', 'illuminance','env_temperature', 'env_humidity']                   
+    Indep = data[variables].values 
+    Dep = data['label'].values
+    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=4, min_samples_leaf=5)
+    time4 = time.time()
     print("Tiempo de creacion del arbol: \n -> ", time4-time3,"s \n")
 
     # Toma de tiempos para el entrenamiento del arbol con los datos obtenidos en el csv
@@ -95,6 +124,46 @@ def Exetime():
     Arbol.fit(Indep, Dep) 
     time6 = time.time()
     print("Tiempo de entrenamiento del arbol: \n -> ", time6-time5,"s \n")
+
+    # Toma de tiempos para la graficacion del arbol de decisiones 
+    time7 = time.time()
+    dot_data = export_graphviz( Arbol,filled=True, rounded=True,class_names=['yes', 'no'],feature_names=variables)
+    graph = graph_from_dot_data(dot_data)                 
+    graph.write_png('time.png')   
+    time8 = time.time()
+    print("Tiempo de graficacion del arbol: \n -> ", time8-time7,"s \n")
+
+    # Toma de tiempos para la prediccion de un valor ingresado 
+    try:
+        print(" Digite los valores separados por comas a evaluar: \n")
+        print("ph  soil_temperature  soil_moisture  illuminance  env_temperature  env_humidity")
+
+        # Lectura de los valores digitados en la consola, estos seran procesados para luego ser evaluados.
+        # Esta parte del codigo leera los valores digitados para despues almacenarlos en un arreglo que sera implementado futuramente.
+
+        str = input("-> ")
+        list = str.split (",")
+        time9 = time.time()
+        PredicVals = []
+        for i in list:
+    	    PredicVals.append(float(i))
+
+        # Esta parte del codigo se implementara para predecir el valor previamente digitado y almacenado en un arreglo para detectar 
+        # si el valor digitado tiene o no roya por lo cual para realizar este paso es necesario primero entrenar al arbol para que pueda detectar el patron.
+
+        Prediction = Arbol.predict([PredicVals])
+
+        print("\n Prediccion con: \n\n", PredicVals,end=" -> ")
+
+        if Prediction == 'yes':
+            print("El valor ingresado posee roya")
+        else: print("El valor ingresado no posee roya")
+
+        time10 = time.time()
+        print("\n Tiempo de prediccion con los datos: \n -> ", time10-time9,"s \n")
+
+    except ValueError:
+        print ("Error! Valor no valido. Intentelo otra vez...")
 
 if __name__ == '__main__':
 
@@ -114,4 +183,3 @@ if __name__ == '__main__':
         else: print("Selecciono una tecla no valida")
     except ValueError:
         print ("Error! Valor no valido. Intentelo otra vez...")
-        
