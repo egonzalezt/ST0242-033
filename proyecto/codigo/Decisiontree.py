@@ -45,8 +45,8 @@ def Decisiontree():
 
     # Implementacion del arbol de decision con el criterio de 'GINI', con una profundidad maxia de 4 nodos y finalmente un minimo de 5 hojas en el arbol
 
-    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=10, min_samples_leaf=5)
-
+    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=None, min_samples_leaf=5)
+    
     # Entrenamento del arbol de decision para poder detectar cual sera la variable que mas parte el arbol y genera el indice de gini mas bajom 
     # este requiere los valores independientes y dependientes para ser analizado.
 
