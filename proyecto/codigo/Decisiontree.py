@@ -71,11 +71,12 @@ def Decisiontree():
     utilizo otro archivo csv que valores diferentes al los que fue entrenado el arbol previamente.
     '''
 
-    data1 = pd.read_csv('data_set.csv') 
+    data1 = pd.read_csv('data_set_test.csv') 
     Indep1 = data1[variables].values 
     Dep1 = data1['label'].values
     Accuracy = Arbol.score(Indep1, Dep1)*100
     print("Precision del arbol-> ",Accuracy,'%','\n')
+    
     # Implementacion de try para evitar errores que pueden ser ocasionados al digitar valores erroneos como tipo string 
 
     try:
@@ -188,9 +189,7 @@ if __name__ == '__main__':
     print("2 Para ver los tiempos de ejecucion")
     
     try:
-        Seleccion = int(input("-> "))
-        print("1 Para ejecutar el arbol")
-        print("2 Para ver los tiempos de ejecucion")
+        Seleccion = int(input("-> ")
 
         if Seleccion==1: 
             print()
