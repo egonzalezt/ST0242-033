@@ -75,8 +75,7 @@ def Decisiontree():
     Indep1 = data1[variables].values 
     Dep1 = data1['label'].values
     Accuracy = Arbol.score(Indep1, Dep1)*100
-    print("Precision del arbol-> ",Accuracy,'%')
-
+    print("Precision del arbol-> ",Accuracy,'%','\n')
     # Implementacion de try para evitar errores que pueden ser ocasionados al digitar valores erroneos como tipo string 
 
     try:
