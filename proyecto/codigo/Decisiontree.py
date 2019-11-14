@@ -1,15 +1,19 @@
 from pydotplus.graphviz import graph_from_dot_data
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.tree import export_graphviz
-import pandas as pd
+#from sklearn import tree
 import time
+import pandas as pd
 
 '''
 Para la correcta ejecucion del codigo se necesitaran las siguientes librerias:
+
 (librerias base)
 - https://www.anaconda.com/distribution/
 - https://pypi.org/project/pip/
+
 (librerias del codigo)
+- https://anaconda.org/anaconda/pil
 - https://pandas.pydata.org/pandas-docs/stable/install.html
 - https://scikit-learn.org/stable/install.html
 - https://anaconda.org/conda-forge/pydotplus
@@ -17,9 +21,10 @@ Para la correcta ejecucion del codigo se necesitaran las siguientes librerias:
 
 '''
 Clase Decisiontree
+
     Implementacion del arbol de decision 'CART' implementando el indice de gini, para ejecutar el codigo se necesita las librerias mencionadas anteriormente,
     adicionalmente se debe poner en la carpeta donde se encuentra el codigo el archivo csv que posteriormente se mencionara donde se seleccionara el nombre del csv,
-    finalmente durante la ejecucion del codigo se creara un archivo con extension '.png' que sera el arbol generado con los datos contenidos en el csv.
+    finalmente durante la ejecucion del codigo se creara un archivo con extencion '.png' que sera el arbol generado con los datos contenidos en el csv.
 '''
 
 def Decisiontree():
@@ -38,11 +43,11 @@ def Decisiontree():
 
     Dep = data['label'].values
 
-    # Implementacion del arbol de decision con el criterio de 'GINI', con una profundidad maxima de 4 nodos y finalmente un minimo de 5 hojas en el arbol
+    # Implementacion del arbol de decision con el criterio de 'GINI', con una profundidad maxia de 4 nodos y finalmente un minimo de 5 hojas en el arbol
 
-    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=22, min_samples_leaf=5)
+    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=10, min_samples_leaf=5)
 
-    # Entrenamiento del arbol de decision para poder detectar cual sera la variable que mas parte el arbol y genera el indice de gini mas bajo.
+    # Entrenamento del arbol de decision para poder detectar cual sera la variable que mas parte el arbol y genera el indice de gini mas bajom 
     # este requiere los valores independientes y dependientes para ser analizado.
 
     Arbol.fit(Indep, Dep) 
@@ -61,6 +66,17 @@ def Decisiontree():
     graph.write_png('tree.png')   
     print("Imagen generada\n")
 
+    '''
+    Funcion para determinar la precision que tiene el arbol previamente construido y entrenado, para determinar la precision se 
+    utilizo otro archivo csv que valores diferentes al los que fue entrenado el arbol previamente.
+    '''
+
+    data1 = pd.read_csv('data_set.csv') 
+    Indep1 = data1[variables].values 
+    Dep1 = data1['label'].values
+    Accuracy = Arbol.score(Indep1, Dep1)*100
+    print("Precision del arbol-> ",Accuracy,'%')
+
     # Implementacion de try para evitar errores que pueden ser ocasionados al digitar valores erroneos como tipo string 
 
     try:
@@ -68,7 +84,7 @@ def Decisiontree():
         print("ph  soil_temperature  soil_moisture  illuminance  env_temperature  env_humidity")
 
         # Lectura de los valores digitados en la consola, estos seran procesados para luego ser evaluados.
-        # Esta parte del codigo leera los valores digitados para despues almacenarlos en un arreglo que sera implementado futuramente.
+        # Esta parte del codigo leera los valores digitados para despues almancenarlos en un arreglo que sera implementado futuramente.
 
         str = input("-> ")
         list = str.split (",")
@@ -91,9 +107,12 @@ def Decisiontree():
 
 '''
 Metodo Exetime
+
     Este metodo sera implementado para la toma de tiempos de las diferentes funciones implementadas en el metodo Decisiontree,
     su objetivo es tomar los tiempos y luego registrarlos en el informe.
+
     adicionalmente para la toma de tiempos se implemento la libreria time para obtener los resultados de los tiempos que seran en segundos (s)
+
 '''
 
 def Exetime():
@@ -103,7 +122,6 @@ def Exetime():
     decision tree, por lo cual time.time() sera aplicado como Tfinal - Tinicial para conocer el tiempo total de ejecucion de cada funcion, y este resultado
     sera previamente mostrado en pantalla.
     '''
-    
     # Toma de tiempos para la lectura del archivo csv
     time1 = time.time()
     data = pd.read_csv('data_set.csv') 
@@ -139,7 +157,7 @@ def Exetime():
         print("ph  soil_temperature  soil_moisture  illuminance  env_temperature  env_humidity")
 
         # Lectura de los valores digitados en la consola, estos seran procesados para luego ser evaluados.
-        # Esta parte del codigo leera los valores digitados para despues almacenarlos en un arreglo que sera implementado futuramente.
+        # Esta parte del codigo leera los valores digitados para despues almancenarlos en un arreglo que sera implementado futuramente.
 
         str = input("-> ")
         list = str.split (",")
@@ -160,7 +178,7 @@ def Exetime():
         else: print("El valor ingresado no posee roya")
 
         time10 = time.time()
-        print("\n Tiempo de prediccion con los datos: \n -> ", time10-time9,"s \n")
+        print("Tiempo de prediccion con los datos: \n -> ", time10-time9,"s \n")
 
     except ValueError:
         print ("Error! Valor no valido. Intentelo otra vez...")
@@ -171,9 +189,10 @@ if __name__ == '__main__':
     print("2 Para ver los tiempos de ejecucion")
     
     try:
-        
         Seleccion = int(input("-> "))
-        
+        print("1 Para ejecutar el arbol")
+        print("2 Para ver los tiempos de ejecucion")
+
         if Seleccion==1: 
             print()
             Decisiontree()
