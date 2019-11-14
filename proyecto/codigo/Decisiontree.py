@@ -133,7 +133,7 @@ def Exetime():
     variables = ['ph', 'soil_temperature', 'soil_moisture', 'illuminance','env_temperature', 'env_humidity']                   
     Indep = data[variables].values 
     Dep = data['label'].values
-    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=4, min_samples_leaf=5)
+    Arbol = DecisionTreeClassifier(criterion="gini", random_state=100, max_depth=None, min_samples_leaf=5)
     time4 = time.time()
     print("Tiempo de creacion del arbol: \n -> ", time4-time3,"s \n")
 
